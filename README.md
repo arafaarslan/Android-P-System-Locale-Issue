@@ -14,3 +14,5 @@ adb shell pm grant com.example.androidlocale android.permission.CHANGE_CONFIGURA
 
 Then launch the app, and press the "Change Language" button. Pull down the system drawer to look
 at the system language after each press: it should change appropriately.
+
+AOSP Issue: https://issuetracker.google.com/issues/79477176
