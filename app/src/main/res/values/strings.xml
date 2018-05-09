@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">LocaleChangingApp</string>
+    <string name="change_language">Change Language (Default)!</string>
+</resources>
