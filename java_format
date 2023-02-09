@@ -1,0 +1,25 @@
+<uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
+
+Locale locale = Locale.forLanguageTag("tr-TR");
+
+@RequiresApi(api = Build.VERSION_CODES.O)
+private void changeLocalePostO(Locale locale) {   
+  try {
+      Class amClass = ActivityManager.class; 
+      Object amClassService = amClass.getMethod("getService").invoke((Object)null); 
+      
+      Method configurationMethod = amClassService.getClass().getMethod("getConfiguration");   
+      configurationMethod.setAccessible(true); 
+      
+      Configuration config = (Configuration)configurationMethod.invoke(amClassService);  
+      config.getClass().getField("userSetLocale").setBoolean(config, true);  
+      config.setLocale(locale);     
+      
+      Method updateConfigurationMethod = amClassService.getClass().getMethod("updateConfiguration", Configuration.class);  
+      updateConfigurationMethod.setAccessible(true);   
+      
+      updateConfigurationMethod.invoke(amClassService, config);    
+      } catch (Exception e) {    
+        e.printStackTrace();  
+      }
+  }
